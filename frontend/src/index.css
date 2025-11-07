@@ -1,0 +1,292 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* NHS Design System Base Styles */
+@layer base {
+  html {
+    font-family: 'Inter', Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-nhs-white text-nhs-black leading-relaxed;
+  }
+
+  /* Focus styles for accessibility */
+  *:focus {
+    @apply outline-none ring-2 ring-nhs-blue ring-offset-2;
+  }
+
+  /* Skip link for screen readers */
+  .skip-link {
+    @apply absolute -top-10 left-6 bg-nhs-blue text-white px-4 py-2 rounded;
+    @apply focus:top-6 z-50 transition-all duration-200;
+  }
+}
+
+@layer components {
+  /* NHS Button Styles */
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 text-base font-medium rounded-md;
+    @apply transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2;
+    @apply disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-primary {
+    @apply btn bg-nhs-blue text-white hover:bg-nhs-dark-blue focus:ring-nhs-blue;
+  }
+
+  .btn-secondary {
+    @apply btn bg-nhs-pale-grey text-nhs-black hover:bg-nhs-mid-grey hover:text-white focus:ring-nhs-mid-grey;
+  }
+
+  .btn-success {
+    @apply btn bg-nhs-green text-white hover:bg-nhs-dark-green focus:ring-nhs-green;
+  }
+
+  .btn-danger {
+    @apply btn bg-nhs-red text-white hover:bg-red-700 focus:ring-nhs-red;
+  }
+
+  .btn-outline {
+    @apply btn border-2 border-nhs-blue text-nhs-blue bg-transparent;
+    @apply hover:bg-nhs-blue hover:text-white focus:ring-nhs-blue;
+  }
+
+  .btn-sm {
+    @apply px-4 py-2 text-sm;
+  }
+
+  .btn-lg {
+    @apply px-8 py-4 text-lg;
+  }
+
+  /* Form Styles */
+  .form-input {
+    @apply block w-full px-4 py-3 text-base border border-nhs-mid-grey rounded-md;
+    @apply focus:ring-nhs-blue focus:border-nhs-blue;
+    @apply placeholder-nhs-mid-grey;
+  }
+
+  .form-label {
+    @apply block text-sm font-medium text-nhs-black mb-2;
+  }
+
+  .form-error {
+    @apply text-nhs-red text-sm mt-1;
+  }
+
+  .form-help {
+    @apply text-nhs-mid-grey text-sm mt-1;
+  }
+
+  /* Card Styles */
+  .card {
+    @apply bg-white rounded-lg shadow-md border border-nhs-pale-grey;
+  }
+
+  .card-header {
+    @apply px-6 py-4 border-b border-nhs-pale-grey;
+  }
+
+  .card-body {
+    @apply px-6 py-4;
+  }
+
+  .card-footer {
+    @apply px-6 py-4 border-t border-nhs-pale-grey bg-nhs-pale-grey;
+  }
+
+  /* Alert Styles */
+  .alert {
+    @apply p-4 rounded-md border-l-4 mb-4;
+  }
+
+  .alert-info {
+    @apply alert bg-blue-50 border-nhs-blue text-nhs-blue;
+  }
+
+  .alert-success {
+    @apply alert bg-green-50 border-nhs-green text-nhs-green;
+  }
+
+  .alert-warning {
+    @apply alert bg-yellow-50 border-nhs-orange text-orange-800;
+  }
+
+  .alert-error {
+    @apply alert bg-red-50 border-nhs-red text-nhs-red;
+  }
+
+  /* Navigation Styles */
+  .nav-link {
+    @apply px-4 py-2 text-nhs-black hover:text-nhs-blue hover:bg-nhs-pale-grey;
+    @apply rounded-md transition-colors duration-200;
+  }
+
+  .nav-link-active {
+    @apply nav-link bg-nhs-blue text-white hover:bg-nhs-dark-blue hover:text-white;
+  }
+
+  /* Badge Styles */
+  .badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium;
+  }
+
+  .badge-primary {
+    @apply badge bg-nhs-blue text-white;
+  }
+
+  .badge-success {
+    @apply badge bg-nhs-green text-white;
+  }
+
+  .badge-warning {
+    @apply badge bg-nhs-orange text-white;
+  }
+
+  .badge-error {
+    @apply badge bg-nhs-red text-white;
+  }
+
+  .badge-grey {
+    @apply badge bg-nhs-mid-grey text-white;
+  }
+
+  /* Loading Spinner */
+  .spinner {
+    @apply inline-block w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin;
+  }
+
+  /* NHS Header Styles */
+  .nhs-header {
+    @apply bg-nhs-blue text-white shadow-lg;
+  }
+
+  .nhs-logo {
+    @apply text-2xl font-bold tracking-tight;
+  }
+
+  /* Appointment Status Styles */
+  .status-scheduled {
+    @apply badge-primary;
+  }
+
+  .status-completed {
+    @apply badge-success;
+  }
+
+  .status-cancelled {
+    @apply badge-error;
+  }
+
+  .status-no-show {
+    @apply badge-grey;
+  }
+
+  /* Responsive Grid */
+  .grid-responsive {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+  }
+
+  /* Container Styles */
+  .container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .container-sm {
+    @apply max-w-3xl mx-auto px-4 sm:px-6;
+  }
+
+  /* Section Spacing */
+  .section {
+    @apply py-12;
+  }
+
+  .section-sm {
+    @apply py-8;
+  }
+
+  /* Divider */
+  .divider {
+    @apply border-t border-nhs-pale-grey my-6;
+  }
+}
+
+@layer utilities {
+  /* Text Utilities */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Animation Delays */
+  .animate-delay-100 {
+    animation-delay: 0.1s;
+  }
+
+  .animate-delay-200 {
+    animation-delay: 0.2s;
+  }
+
+  .animate-delay-300 {
+    animation-delay: 0.3s;
+  }
+
+  /* Scrollbar Styles */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    @apply bg-nhs-pale-grey;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    @apply bg-nhs-mid-grey rounded-full;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    @apply bg-nhs-dark-grey;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  .print-break-before {
+    page-break-before: always;
+  }
+
+  .print-break-after {
+    page-break-after: always;
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .btn-primary {
+    @apply border-2 border-white;
+  }
+
+  .form-input {
+    @apply border-2;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
