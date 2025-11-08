@@ -146,15 +146,24 @@ export const AuthProvider = ({ children }) => {
     try {
       const response = await authAPI.login({ email, password });
       
-      if (response.data) {
-        const { access_token, user } = response.data;
+      // Backend wraps response in a 'data' object
+      const responseData = response.data.data || response.data;
+      
+      if (responseData) {
+        const { access_token, user } = responseData;
+        
+        // Ensure user has 'role' field (map from user_type if needed)
+        const normalizedUser = {
+          ...user,
+          role: user.role || user.user_type || 'patient'
+        };
         
         // Store token
         localStorage.setItem('nhs_token', access_token);
         
         dispatch({
           type: AUTH_ACTIONS.LOGIN_SUCCESS,
-          payload: { access_token, user },
+          payload: { access_token, user: normalizedUser },
         });
 
         toast.success('Login successful!');

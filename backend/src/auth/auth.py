@@ -79,8 +79,8 @@ def handle_login(event: Dict[str, Any]) -> Dict[str, Any]:
             try:
                 users = db.query_items(
                     'patients',
-                    index_name='email-index',
-                    key_condition_expression='email = :email',
+                    index_name='EmailIndex',
+                    key_condition='email = :email',
                     expression_values={':email': email}
                 )
                 
@@ -95,6 +95,7 @@ def handle_login(event: Dict[str, Any]) -> Dict[str, Any]:
                     'exp': int((datetime.now(timezone.utc).timestamp() + 86400))
                 }, 'local-dev-secret', algorithm='HS256')
                 
+                user_type = user.get('user_type', 'patient')
                 response_data = {
                     'access_token': token,
                     'id_token': token,
@@ -102,7 +103,8 @@ def handle_login(event: Dict[str, Any]) -> Dict[str, Any]:
                     'user': {
                         'user_id': user['patient_id'],
                         'email': user['email'],
-                        'user_type': user.get('user_type', 'patient'),
+                        'user_type': user_type,
+                        'role': user_type,  # Frontend expects 'role'
                         'first_name': user.get('first_name', ''),
                         'last_name': user.get('last_name', '')
                     }
@@ -184,8 +186,8 @@ def handle_register(event: Dict[str, Any]) -> Dict[str, Any]:
                 try:
                     existing = db.query_items(
                         'patients',
-                        index_name='email-index',
-                        key_condition_expression='email = :email',
+                        index_name='EmailIndex',
+                        key_condition='email = :email',
                         expression_values={':email': email}
                     )
                     if existing:

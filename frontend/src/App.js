@@ -40,6 +40,12 @@ const ProtectedRoute = ({ children, allowedRoles = [] }) => {
   }
 
   if (allowedRoles.length > 0 && !allowedRoles.includes(user.role)) {
+    // Redirect to appropriate dashboard instead of unauthorized page
+    if (user.role === 'staff' || user.role === 'admin') {
+      return <Navigate to="/staff/dashboard" replace />;
+    } else if (user.role === 'patient') {
+      return <Navigate to="/patient/dashboard" replace />;
+    }
     return <Navigate to="/unauthorized" replace />;
   }
 
@@ -77,9 +83,11 @@ function App() {
         <Routes>
           {/* Public Routes */}
           <Route path="/" element={
-            <PublicLayout>
-              <HomePage />
-            </PublicLayout>
+            <PublicRoute>
+              <PublicLayout>
+                <HomePage />
+              </PublicLayout>
+            </PublicRoute>
           } />
           
           <Route path="/login" element={

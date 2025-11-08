@@ -220,6 +220,7 @@ def seed_test_data():
             'last_name': 'Smith',
             'nhs_number': '1234567890',
             'email': 'john.smith@email.com',
+            'password': 'TestPass123!',
             'phone_number': '07123456789',
             'date_of_birth': '1980-01-15',
             'address': {
@@ -244,6 +245,7 @@ def seed_test_data():
             'last_name': 'Doe',
             'nhs_number': '0987654321',
             'email': 'jane.doe@email.com',
+            'password': 'TestPass123!',
             'phone_number': '07987654321',
             'date_of_birth': '1975-06-20',
             'address': {
@@ -268,6 +270,7 @@ def seed_test_data():
             'last_name': 'Wilson',
             'nhs_number': '1122334455',
             'email': 'bob.wilson@email.com',
+            'password': 'TestPass123!',
             'phone_number': '07555666777',
             'date_of_birth': '1990-12-10',
             'address': {
@@ -299,6 +302,7 @@ def seed_test_data():
             'first_name': 'Dr. Sarah',
             'last_name': 'Jones',
             'email': 'dr.sarah.jones@riverside.nhs.uk',
+            'password': 'StaffPass123!',
             'phone_number': '020 7123 4567',
             'practice_id': 'practice-001',
             'user_type': 'staff',
@@ -311,6 +315,7 @@ def seed_test_data():
             'first_name': 'Nurse Mary',
             'last_name': 'Brown',
             'email': 'nurse.mary.brown@riverside.nhs.uk',
+            'password': 'StaffPass123!',
             'phone_number': '020 7123 4568',
             'practice_id': 'practice-001',
             'user_type': 'staff',

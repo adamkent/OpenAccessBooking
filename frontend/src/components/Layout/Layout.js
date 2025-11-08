@@ -47,7 +47,7 @@ const Layout = ({ children, userType = 'patient' }) => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 flex">
       {/* Mobile sidebar overlay */}
       {sidebarOpen && (
         <div 
@@ -60,7 +60,7 @@ const Layout = ({ children, userType = 'patient' }) => {
 
       {/* Sidebar */}
       <div className={`
-        fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0
+        fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out lg:relative lg:translate-x-0
         ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
       `}>
         <div className="flex items-center justify-between h-16 px-6 bg-nhs-blue">
@@ -117,7 +117,7 @@ const Layout = ({ children, userType = 'patient' }) => {
                     {user?.first_name || user?.email?.split('@')[0] || 'User'}
                   </p>
                   <p className="text-xs text-nhs-mid-grey capitalize">
-                    {user?.role || 'Patient'}
+                    {user?.role || user?.user_type || userType || 'Patient'}
                   </p>
                 </div>
               </div>
@@ -137,7 +137,7 @@ const Layout = ({ children, userType = 'patient' }) => {
       </div>
 
       {/* Main content */}
-      <div className="lg:pl-64">
+      <div className="flex-1 flex flex-col min-w-0">
         {/* Top header */}
         <header className="bg-white shadow-sm border-b border-nhs-pale-grey">
           <div className="flex items-center justify-between h-16 px-6">
